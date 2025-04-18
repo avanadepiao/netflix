@@ -22,10 +22,10 @@ def estep(X: np.ndarray, mixture: GaussianMixture) -> np.ndarray:
     post = np.zeros((n, K))
 
     for i in range(n):
-        tiled_vector = np.tile(X[i, :], (K, 1))
-        sse = ((tiled_vector - mixture.mu)**2).sum(axis=1)
-        j = np.argmin(sse)
-        post[i, j] = 1
+        tiled_vector = np.tile(X[i, :], (K, 1)) # copy i行目をK回コピー 1 x d -> K x d
+        sse = ((tiled_vector - mixture.mu)**2).sum(axis=1) # (K x d) - mu(K x d)を2乗 -> 行のsumを取る ->  1 x K
+        j = np.argmin(sse) # 1 x Kの中で、最小値のindexを返却する sse =[2.0, 0.0, 13.0] -> j = 1
+        post[i, j] = 1 # 1-of-encoding i行目がjクラスタに属する [0.0, 1.0, 0.0]
 
     return post
 
