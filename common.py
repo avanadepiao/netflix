@@ -98,4 +98,13 @@ def bic(X: np.ndarray, mixture: GaussianMixture,
     Returns:
         float: the BIC for this mixture
     """
-    raise NotImplementedError
+    n, d = X.shape
+    K, _ = mixture.mu.shape
+
+    # calculate parameters number
+    p = K*d + K + (K -1 ) # mu + var + p(sigma(p)が1になる制約があるため、p_kは1-sigma(p_k-1)で求められる。なので自由パラメーターは-1にすべき)
+
+    # baysian_information_criterion
+    BIC = log_likelihood - 0.5 * p * np.log(n)
+
+    return BIC
