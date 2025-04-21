@@ -50,7 +50,7 @@ def estep(X: np.ndarray, mixture: GaussianMixture) -> Tuple[np.ndarray, float]:
     post /= post_sum
 
     # log-likelihood
-    log_likelihood = np.sum(np.log(post_sum))
+    log_likelihood = np.sum(np.log(post_sum + 1e-16))
 
     return post, log_likelihood
     

@@ -2,6 +2,7 @@
 from typing import Tuple
 import numpy as np
 from scipy.special import logsumexp
+from sklearn.covariance import log_likelihood
 from common import GaussianMixture
 
 
@@ -18,8 +19,35 @@ def estep(X: np.ndarray, mixture: GaussianMixture) -> Tuple[np.ndarray, float]:
         float: log-likelihood of the assignment
 
     """
-    raise NotImplementedError
+    n, d     = X.shape
+    K        = mixture.mu.shape[0]
+    mu, var, pi = mixture.mu, mixture.var, mixture.p
 
+    obs_mask   = X != 0
+    obs_counts = obs_mask.sum(axis=1)
+
+    log_pi = np.log(pi + 1e-16)
+    log2pi = np.log(2*np.pi)
+
+    log_prob = np.empty((n, K))
+    for k in range(K):
+        diff      = (X - mu[k]) * obs_mask
+        sq_error  = (diff**2).sum(axis=1)
+        log_prob[:, k] = (
+            log_pi[k]
+          - 0.5 * obs_counts * (log2pi + np.log(var[k]))
+          - 0.5 * sq_error / var[k]
+        )
+
+    log_denom = logsumexp(log_prob, axis=1, keepdims=True)  # shape (n,1)
+    post      = np.exp(log_prob - log_denom)
+    ll        = log_denom.sum()                             # scalar
+
+    return post, ll
+
+
+
+    
 
 
 def mstep(X: np.ndarray, post: np.ndarray, mixture: GaussianMixture,
