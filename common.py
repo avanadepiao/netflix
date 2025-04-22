@@ -61,12 +61,12 @@ def plot(X: np.ndarray, mixture: GaussianMixture, post: np.ndarray,
         theta = 0
         for j in range(K):
             offset = percent[i, j] * 360
-            arc = Arc(point,
-                      r,
-                      r,
-                      0,
-                      theta,
-                      theta + offset,
+            arc = Arc(xy=point,
+                      width=r,
+                      height=r,
+                      angle=0,
+                      theta1=theta,
+                      theta2=theta + offset,
                       edgecolor=color[j])
             ax.add_patch(arc)
             theta += offset
