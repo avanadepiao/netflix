@@ -1,0 +1,75 @@
+
+So today we will talk about reinforcement learning.
+
+I'm sure that all of you have heard about reinforcement learning because of the 
+recent successes of AlphaGo, where we had a machine which beat the world champion 
+in the game, and it was so super exciting.
+
+Reinforcement learning is different from supervised learning, both in terms of 
+tasks you can solve with reinforcement learning, and the whole intuition behind 
+it. In supervised learning, we assume that when we're teaching our algorithm to 
+do something, we're given supervision at every single step. However, in many 
+problems in life, you cannot get supervision at every point of the progression. 
+You go, you try different things, and eventually, some of them succeed and some 
+of them don't. As intelligent human beings, you actually know how to trace back 
+and attribute what made your whole exploration successful.
+
+Again, if you want to think about reinforcement learning, when we teach, let's 
+say, a mouse to run in the maze, the idea here is the animal doesn't get rewarded 
+every single step. But at the end, when the animal reaches the goal, then it gets 
+a banana or whatever reward they give to the animal. In many situations in life 
+or in our engineering tasks, we are actually faced with the same scenario.
+
+The first one, as I already mentioned, is computer games. When a computer tries 
+to play another human or against a computer, in this case, you may get some 
+rewards in the middle. But actually, what counts is whether the game was won or 
+not. Similarly, you can think about teaching robots to solve some complex 
+navigation task, where the robot needs to go in some terrain, reaching the final 
+point. Again, the robot can get some rewards in the middle. But actually, what 
+counts is whether the goal was reached or not.
+
+I want to make sure that we understand that the tasks related to reinforcement 
+learning do not necessarily correspond only to navigation tasks or games. Many 
+of our daily activities can be thought of as reinforcement learning. Let's say 
+you're in a marketing company, and you are trying to recruit a new client. You 
+have multiple options that you can take. You can call them, you can send them an 
+email, you can send them a personal email, or maybe you can send them a gift. 
+There are lots of ways to engage with the customer. Each one of them would come 
+with a different cost. Maybe the customer would like to get a gift better than 
+getting your email. But you would not know what is the right action at the time 
+of taking it. What you would actually want to make sure of is that at the end, 
+what counts is whether the customer signed or didn't.
+
+This is the type of problem that is related to reinforcement learning, where our 
+agent can take a lot of different actions, and what counts is the reward this 
+agent gets or doesn't get at the end. The whole question of reinforcement learning 
+is how can we get this ultimate reward that we will get and propagate it back and 
+learn how to behave.
+
+This will be the topic of our discussion today. I will introduce you to the type 
+of problems we can solve with reinforcement learning. In the next point of our 
+lecture, we'll be discussing how to formalize these problems because we need to 
+start talking about them in clear mathematical terms. Here, I will talk to you 
+about Markov decision processes first—Markov decision processes.
+
+Within this big category, we will talk in more detail about the notions of state, 
+reward, action, and so on. Once we complete this discussion, we will start talking 
+about what is called Bellman equations. These equations would enable us, again, 
+formally to describe how we can propagate the goodness of the state from the 
+reward state to all the other states. Based on this discussion, we would be able 
+to formulate a value iteration algorithm that can solve these Markov decision 
+processes. I will call them MDPs, MDPs, OK?
+
+So this is the plan for today. Let's start talking first about Markov decision 
+processes. Even though when I started the lecture, I gave you all these exciting 
+examples of reinforcement learning, let's look at some sort of maybe boring 
+example. But it's a clear example on which we will do all our introduction of the 
+terms.
+
+Assume that you have a very simple rule. You just have here different states, and 
+your robot can move around this space. Let's say this is the place where the robot 
+cannot go through because there is some hazard over there. If the robot does a 
+good job, it would eventually end up here and get a reward of +1. If the robot 
+fails—not fails, but if the robot ends up here, it's going to get a negative 
+reward or punishment, OK? Your goal is to find a strategy to get to this 
+particular place where you're getting all the rewards.

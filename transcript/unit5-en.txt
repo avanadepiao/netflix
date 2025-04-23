@@ -1,0 +1,22 @@
+
+In this unit, we will cover reinforcement learning. Here, we will venture into new 
+territory, taking away the supervision we used in the supervised section. Instead of 
+receiving feedback for every action taken, the agent will receive feedback only at the 
+very end.
+
+One of the most exciting examples of reinforcement learning is the recent success of 
+machine playing AlphaGo. In this case, the machine does not receive a reward for every 
+action; instead, the outcome of the entire game determines success.
+
+We will begin by approaching reinforcement learning through a simplified scenario called 
+Markov Decision Processes (MDPs). In MDPs, the machine identifies the best action plan 
+when it knows all possible rewards and transitions between states.
+
+Next, we will relax some of these assumptions and explore full reinforcement learning. 
+In this case, the agent must interact with the world, collect rewards, and experience 
+different transitions without prior knowledge of this information—similar to real-life 
+scenarios.
+
+By the end of this unit, you will have the opportunity to apply these concepts in a 
+reinforcement learning project, where you will implement an agent capable of playing 
+text-based games.

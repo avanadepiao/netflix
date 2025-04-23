@@ -1,0 +1,73 @@
+
+So let me first start introducing the terminology which we will be talking about.  
+The first piece of terminology is talking about states.  
+We will call them consistently "s" when we're talking about individual states.  
+They all come with some set of states, capital "S".  
+For the sake of our conversation today, we will assume that all the states are observed.  
+
+In this case, I have eight states, and the robot (or myself) knows exactly where it is standing.  
+This is called the observed case. It doesn't have to be this way, but we will assume that everything is observed.  
+OK? So I would say observed.  
+
+The next part of our description would be actions—what you can actually do in this space.  
+We will have actions, and I will call them consistently lowercase "a".  
+What are those actions? Those actions are things that you're allowed to do.  
+In this case, we assume that the agent can go left, right, up, and down.  
+If you're taking an action and hit a wall, you stay in the same place.  
+
+This is a very small world. If I just defined that and explained it to you, what is the big problem?  
+Let's say I'm here, and I just need to go around and get 2 plus 1.  
+What's so special about this problem? It's just a planning problem.  
+That is my starting state, and that is my destination state.  
+We're getting the highest reward. Why do we need to introduce new machinery?  
+Planning will do it for us.  
+
+However, what's interesting about it is that we are operating in a non-deterministic world.  
+A non-deterministic world means that maybe I want to go straight, and I would eventually end up going straight 80% of the time.  
+But there is a 10% chance that I may go right or left.  
+This makes the problem particularly interesting because even though you may have good intentions and know where you want to be,  
+you may end up in a different place. It's exactly like in life, correct?  
+We have good intentions but may end up somewhere else.  
+
+That's why we will introduce a new notion called transitions.  
+These transitions will take the state from which you start, the action you take, and the destination state.  
+It will give you a probability of ending up at state S' when you have taken action "a" from state "s".  
+This is a transition.  
+
+For our case, we assume an 80% probability to follow the intended direction.  
+There will be a 10% chance to go to the sides.  
+You can imagine creating a very big table that says:  
+- If you are in this state and take action "up", 80% you're going to end up here,  
+- 10% you're going to end up there,  
+- 10% you're going to stay in the same place because there's nowhere to go.  
+
+This is our transition function.  
+
+The final thing I want to introduce is the notion of reward.  
+We said this is our way to see what is good behavior—if, at the end, we go to a reward.  
+There are many ways to define reward.  
+
+For example, I told you that the only reward or punishment is in these two states.  
+So I can define the reward as a function of state.  
+In other problems, this definition is not sufficient.  
+
+For instance, in marketing cases, you not only care where you end up but also how much it costs to do something.  
+In this case, you may want to define the reward as a function of the original state, the action, and the state where you end up.  
+Whatever I describe today will work with both definitions of reward.  
+
+When we're talking about Markov Decision Processes (MDPs), we assume that states, actions, transitions, and rewards are given to us.  
+An MDP is just a quadruple of these values: S, A, T, and R.  
+
+You can add extra states. For instance, you can assume there is a starting state.  
+You can also assume there are halting states where, once you arrive, you cannot continue anymore.  
+For example, once you arrive at a state with a +1 reward, you are done.  
+
+There are extra variants of this problem to consider, but everything we discuss applies to all these variants.  
+
+For now, let's look again at what an MDP is.  
+We have a set of states and a set of actions.  
+You can think of the transition as a very big table that gives you a probability for every triple of state, action, and destination state.  
+Finally, you have a reward, which can also be written as a table of values.  
+
+When we start thinking about more realistic problems, we want more complicated definitions of transition functions and rewards.  
+But for now, you can imagine them as tables.
